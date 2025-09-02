@@ -1,0 +1,328 @@
+/* Root variables for theme */
+:root {
+  --bg-gradient: linear-gradient(135deg, #e6ebf2, #f8f9fb);
+  --text-color: #222;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --accent: #0072ff;
+  --accent-light: #00c6ff;
+}
+
+body.dark {
+  --bg-gradient: linear-gradient(135deg, #141e30, #243b55);
+  --text-color: #fff;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --accent: #0072ff;
+  --accent-light: #00c6ff;
+}
+
+/* Global */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.5s, color 0.3s;
+}
+
+/* Container */
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;  /* Adjust width to 90% for flexible layout */
+  max-width: 600px;  /* Ensure max width doesn't exceed 600px */
+  margin: 20px auto;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  transition: background 0.5s;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
+  transition: transform 0.2s;
+  z-index: 9999; /* Ensure the theme button is on top */
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+}
+
+/* Brand & Title */
+.brand-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.3em;
+  background: linear-gradient(90deg, var(--accent-light), var(--accent));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  font-size: 1rem;
+  margin-bottom: 2em;
+  color: #666;
+}
+
+body.dark .tagline {
+  color: #bbb;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;  /* Allow buttons to wrap if necessary */
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%; /* Ensures it takes full container width */
+}
+
+/* Buttons (button + label) */
+.custom-btn,
+.submit-btn,
+.reupload-btn,
+.retake-btn,
+label.custom-btn {
+  width: 160px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.custom-btn:hover,
+.submit-btn:hover,
+.reupload-btn:hover,
+.retake-btn:hover,
+label.custom-btn:hover {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  transform: translateY(-2px);
+}
+
+/* Hidden input inside label */
+label.custom-btn input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Camera Preview */
+#camera-preview {
+  margin-top: 20px;
+  display: none;
+}
+
+#camera-preview.show {
+  display: block;
+}
+
+video {
+  width: 100%;
+  max-height: 320px;
+  border-radius: 12px;
+  background-color: #000;
+  border: 2px solid var(--accent-light);
+  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+}
+
+/* Output */
+.output-box {
+  background: rgba(0, 114, 255, 0.1);
+  color: var(--text-color);
+  padding: 16px;
+  margin-top: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.2);
+  font-size: 1.05rem;
+}
+
+body.dark .output-box {
+  background: rgba(0, 114, 255, 0.2);
+  color: #fff;
+}
+
+#error-msg {
+  color: #e74c3c;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 0.9rem;
+  color: #888;
+  user-select: none;
+}
+
+body.dark footer {
+  color: #bbb;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .brand-name {
+    font-size: 2rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  /* Buttons */
+  .custom-btn,
+  .submit-btn,
+  .reupload-btn,
+  .retake-btn,
+  label.custom-btn {
+    font-size: 0.9rem;
+    flex: 1 1 100%; /* Make buttons take full width */
+    height: 46px;
+  }
+
+  /* Ensure Output Box font size adjusts on mobile */
+  .output-box {
+    font-size: 0.95rem;
+  }
+
+  /* Ensure video and images scale down appropriately */
+  video,
+  #preview-image,
+  #result-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .container {
+    width: 95%;
+    max-width: 580px;
+    margin: 20px auto;
+    padding: 25px;
+  }
+}
+
+/* Preview image/video */
+#preview-image,
+#result-image,
+video {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+#error-msg {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+/* Initially hide unnecessary buttons */
+/* Initially hide all buttons except Upload Photo and Start Camera */
+#start-camera-btn, #upload-label, #capture-btn, #reupload-btn, #retake-btn {
+  display: none; /* Hide all buttons by default */
+}
+
+/* Show Upload and Start Camera buttons when necessary */
+#upload-label, #start-camera-btn {
+  display: inline-block; /* These buttons should be visible initially */
+}
+
+/* Ensure the Upload Photo button text is vertically centered */
+#upload-label {
+  display: inline-flex;
+  align-items: center;  /* Center the text vertically */
+  justify-content: center;  /* Center the text horizontally */
+  line-height: 48px; /* Make sure the text is vertically aligned */
+}
+
+/* Light theme button styles */
+.theme-toggle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
+  transition: transform 0.2s;
+  z-index: 9999; /* Ensure the theme button is on top */
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+}
+
+/* Adjust positioning for smaller screens */
+@media (max-width: 600px) {
+  .theme-toggle {
+    position: fixed;  /* Make it fixed so it stays in place on mobile */
+    top: 10px;  /* Adjust the position */
+    right: 10px;  /* Adjust the position */
+    font-size: 1rem;  /* Slightly larger font size for better touch */
+    padding: 10px 16px;  /* Adjust padding for better mobile UI */
+  }
+}

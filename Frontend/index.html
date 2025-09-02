@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoVision: Number Plate Detection</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Quick inline styles for demo buttons side by side */
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+    .custom-btn, .submit-btn {
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      background: #2196F3;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .custom-btn:hover, .submit-btn:hover {
+      background: #0b7dda;
+    }
+    #camera-preview.show {
+      display: block !important;
+      margin-top: 15px;
+    }
+    #camera-preview {
+      display: none;
+    }
+  </style>
+</head>
+<body class="dark">
+  <!-- Theme toggle button -->
+  <button class="theme-toggle" id="theme-toggle">Light Theme</button>
+
+  <div class="container">
+    <h1 class="brand-name">AutoVision</h1>
+    <h2 class="tagline">AI-based Number Plate Detection System</h2>
+
+    <form id="upload-form">
+      <div class="button-group">
+        <!-- Upload Photo button with hidden file input -->
+        <label for="file-input" id="upload-label" class="custom-btn">
+          Upload Photo
+          <input type="file" id="file-input" name="image" accept="image/*" hidden />
+        </label>
+
+        <button type="button" class="custom-btn" id="reupload-btn" style="display:none;">Reupload</button>
+        <button type="button" class="custom-btn" id="start-camera-btn">Start Camera</button>
+        <button type="button" class="custom-btn" id="capture-btn" style="display:none;">Capture</button>
+        <button type="button" class="custom-btn" id="retake-btn" style="display:none;">Retake</button>
+        <button type="button" class="submit-btn" id="submit-btn" style="display:none;">Submit for Detection</button>
+      </div>
+
+      <img id="preview-image" style="max-width: 100%; margin-top: 15px; display: none; border-radius: 10px;" />
+    </form>
+
+    <div id="camera-preview" class="">
+      <video id="video" autoplay playsinline style="width: 100%; border-radius: 10px;"></video>
+      <canvas id="canvas" class="hidden"></canvas>
+    </div>
+
+    <p id="error-msg" style="color: #f44336; font-weight: bold;"></p>
+
+    <div class="output-box" style="margin-top: 30px; background-color: rgba(255 255 255 / 0.1); padding: 20px; border-radius: 10px;">
+      <h2>Detected Number Plate:</h2>
+      <p id="output-text">Waiting for result...</p>
+      <img id="result-image" style="max-width:100%; margin-top:10px; display:none;" />
+    </div>
+  </div>
+
+  <footer style="text-align: center; margin-top: 40px; color: #ccc;">
+    &copy; 2025 AutoVision. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
